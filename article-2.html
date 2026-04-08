@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protected — Christine Han</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@200;300;400;500;600&family=Karla:wght@300;400;500&display=swap');
+
+  :root {
+    --hanji: #F3EBE0;
+    --hanji-warm: #EBE0D2;
+    --ink: #2C251D;
+    --ink-soft: #52493B;
+    --persimmon: #C07A6E;
+    --amber: #C4A86C;
+    --celadon: #9AAD8C;
+    --sienna: #8E7766;
+    --mauve: #A08890;
+    --warm-gray: #847A6C;
+    --wood: #6E5C3A;
+    --wood-med: #8A7650;
+    --wood-light: #AA9868;
+    --taupe: #B0A090;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body {
+    font-family: 'Karla', sans-serif;
+    color: var(--ink);
+    background: var(--hanji);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0; opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='h'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23h)'/%3E%3C/svg%3E");
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 18% 22%, rgba(212,184,176,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 78% 60%, rgba(180,200,170,0.06) 0%, transparent 45%);
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    background: rgba(243, 235, 224, 0.94);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(200, 188, 168, 0.25);
+  }
+  .logo { font-family: 'Noto Serif KR', serif; font-weight: 400; font-size: 1rem; }
+  .logo-en { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft); margin-left: 0.8rem; letter-spacing: 0.06em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: .76rem; letter-spacing: .14em; text-transform: lowercase; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--persimmon); transition: width .5s cubic-bezier(.25,.1,.25,1); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .back-link {
+    display: inline-block;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .3s;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--persimmon); }
+
+  .article-page { position: relative; z-index: 1; }
+  .article-body {
+    max-width: 680px; margin: 0 auto;
+    padding: 8rem 2rem 6rem;
+  }
+  .article-body .article-tag {
+    font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--celadon);
+    margin-bottom: 1rem;
+  }
+  .article-body h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; font-size: 2.4rem;
+    line-height: 1.3; margin-bottom: 0.6rem;
+  }
+  .article-body .article-date {
+    font-size: .75rem; color: var(--taupe);
+    letter-spacing: .08em; margin-bottom: 3rem;
+  }
+  .article-body .article-content {
+    font-size: .95rem; line-height: 2;
+    color: var(--ink-soft);
+  }
+  .article-body .article-content p { margin-bottom: 1.5rem; }
+
+  /* Password gate */
+  .pw-gate {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh; padding: 2rem; text-align: center;
+  }
+  .pw-gate .pw-icon { font-size: 2.4rem; margin-bottom: 1.5rem; opacity: 0.5; }
+  .pw-gate h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; font-size: 1.6rem;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .pw-gate p {
+    font-size: .85rem; color: var(--ink-soft);
+    margin-bottom: 2rem; letter-spacing: .03em;
+  }
+  .pw-gate .pw-form { display: flex; gap: 0.75rem; align-items: center; }
+  .pw-gate input[type="password"] {
+    font-family: 'Karla', sans-serif; font-size: .85rem;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid var(--hanji-warm); border-radius: 4px;
+    background: rgba(255,255,255,0.5); color: var(--ink);
+    outline: none; transition: border-color .3s;
+    letter-spacing: .06em; width: 220px;
+  }
+  .pw-gate input[type="password"]:focus { border-color: var(--persimmon); }
+  .pw-gate button {
+    font-family: 'Karla', sans-serif; font-size: .75rem;
+    letter-spacing: .1em; text-transform: lowercase;
+    padding: 0.7rem 1.6rem;
+    border: 1px solid var(--ink-soft); border-radius: 4px;
+    background: none; color: var(--ink-soft);
+    cursor: pointer; transition: all .3s;
+  }
+  .pw-gate button:hover {
+    background: var(--ink); color: var(--hanji); border-color: var(--ink);
+  }
+  .pw-error {
+    color: var(--persimmon); font-size: .75rem;
+    letter-spacing: .06em; margin-top: 1rem;
+    opacity: 0; transition: opacity .3s;
+  }
+  .pw-error.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-en">Christine Han</span> 한예진</div>
+  <ul class="nav-links">
+    <li><a href="index.html#work">experience</a></li>
+    <li><a href="index.html#about">living</a></li>
+    <li><a href="index.html#writing">writing</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="pw-gate" id="pw-gate">
+  <a href="index.html#writing" class="back-link" style="position:absolute; top:2rem; left:5vw;">← back</a>
+  <div class="pw-icon">&#x1F512;</div>
+  <h2>This one's private</h2>
+  <p>hint: my favorite fruit!</p>
+  <div class="pw-form">
+    <input type="password" id="pw-input" placeholder="password" autocomplete="off" />
+    <button onclick="checkPw()">enter</button>
+  </div>
+  <div class="pw-error" id="pw-error">Incorrect password. Try again.</div>
+</div>
+
+<div class="article-page" id="article-page" style="display:none;">
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<script>
+  // Encrypted article content (AES-256-GCM, PBKDF2 key derivation)
+  const ENCRYPTED = {
+    salt: 'nKqXeVLhx+WQaFKVCGeFpw==',
+    iv:   'WJqC1A8VpCyuqGdH',
+    ct:   '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'
+  };
+
+  function b64ToArr(b64) {
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr;
+  }
+
+  async function deriveKey(password, salt) {
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+  }
+
+  async function checkPw() {
+    const password = document.getElementById('pw-input').value;
+    try {
+      const salt = b64ToArr(ENCRYPTED.salt);
+      const iv = b64ToArr(ENCRYPTED.iv);
+      const ct = b64ToArr(ENCRYPTED.ct);
+      const key = await deriveKey(password, salt);
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+      const html = new TextDecoder().decode(plain);
+
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('article-body').innerHTML = html;
+      document.getElementById('article-page').style.display = '';
+      document.title = 'Cello — Christine Han';
+    } catch (e) {
+      document.getElementById('pw-error').classList.add('visible');
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  document.getElementById('pw-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPw();
+  });
+</script>
+
+</body>
+</html>

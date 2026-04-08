@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On Sisterhood — Christine Han</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@200;300;400;500;600&family=Karla:wght@300;400;500&display=swap');
+
+  :root {
+    --hanji: #F3EBE0;
+    --hanji-warm: #EBE0D2;
+    --ink: #2C251D;
+    --ink-soft: #52493B;
+    --persimmon: #C07A6E;
+    --amber: #C4A86C;
+    --celadon: #9AAD8C;
+    --sienna: #8E7766;
+    --mauve: #A08890;
+    --warm-gray: #847A6C;
+    --wood: #6E5C3A;
+    --wood-med: #8A7650;
+    --wood-light: #AA9868;
+    --taupe: #B0A090;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body {
+    font-family: 'Karla', sans-serif;
+    color: var(--ink);
+    background: var(--hanji);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Hanji texture */
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0; opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='h'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23h)'/%3E%3C/svg%3E");
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 18% 22%, rgba(212,184,176,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 78% 60%, rgba(180,200,170,0.06) 0%, transparent 45%);
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    background: rgba(243, 235, 224, 0.94);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(200, 188, 168, 0.25);
+  }
+  .logo { font-family: 'Noto Serif KR', serif; font-weight: 400; font-size: 1rem; }
+  .logo-en { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft); margin-left: 0.8rem; letter-spacing: 0.06em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: .76rem; letter-spacing: .14em; text-transform: lowercase; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--persimmon); transition: width .5s cubic-bezier(.25,.1,.25,1); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Back link */
+  .back-link {
+    display: inline-block;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .3s;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--persimmon); }
+
+  /* Article */
+  .article-page {
+    position: relative;
+    z-index: 1;
+  }
+  .article-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 8rem 2rem 6rem;
+  }
+  .article-body .article-tag {
+    font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--celadon);
+    margin-bottom: 1rem;
+  }
+  .article-body h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; font-size: 2.4rem;
+    line-height: 1.3; margin-bottom: 0.6rem;
+  }
+  .article-body .article-subtitle {
+    font-size: .85rem; color: var(--warm-gray);
+    font-style: italic; letter-spacing: .03em;
+    margin-bottom: 0.4rem;
+  }
+  .article-body .article-date {
+    font-size: .75rem; color: var(--taupe);
+    letter-spacing: .08em; margin-bottom: 3rem;
+  }
+  .article-body .article-content {
+    font-size: .95rem; line-height: 2;
+    color: var(--ink-soft);
+  }
+  .article-body .article-content p { margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-en">Christine Han</span> 한예진</div>
+  <ul class="nav-links">
+    <li><a href="index.html#work">experience</a></li>
+    <li><a href="index.html#about">living</a></li>
+    <li><a href="index.html#writing">writing</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="article-page">
+  <div class="article-body">
+    <a href="index.html#writing" class="back-link">← back</a>
+    <div class="article-tag">learnings</div>
+    <h1>On Sisterhood</h1>
+    <div class="article-subtitle">a letter to my little sister for her 20th birthday</div>
+    <div class="article-date">September 16, 2023</div>
+    <div class="article-content">
+      <p>Dear Yebin,</p>
+      <p>I used to hate matching with you when we were little. I remember this pink dress with white flowers I loved that Umma bought for us when I was in first grade. I loved that dress- except you had it too. I remember walking to picture day that year, and I hated that you were walking next to me, wearing the same thing.</p>
+      <p>You were always so much tinier than me. You were at my waist height for so long, and then shoulder height for a while. I exclusively talked to oppa after school and kept you out of my conversations because you were such a baby in my eyes. And being young and immature, I wanted to be too old and too mature to play with you. So I wouldn't let you sit with the "older kids" when we hung out; I fought and yelled when you tried to use my things; I made fun of you and teased you so my friends wouldn't think you were cute like they always said you were (you were though, and I was jealous).</p>
+      <p>I realized recently though, at some unknown point in my life, I went from calling you my little sister to my younger sister. At some unknown point in my life, I was no longer looking down to meet your eyes. At some unknown point in my life, I could no longer beat you in arm wrestling. Actually no, scratch that, I remember exactly what point because I felt threatened when I started to struggle to win (when you were in 6th grade and starting gymnastics).</p>
+      <p>At a certain point, you were no longer sliding apology letters under my door for fights where I was in the wrong. At a certain point, you were no longer asking to tag along to my play dates. At a certain point, I found myself wanting to hang out with you and your friends, borrow your clothes and make up, and share about my day with you - but by that point, I had already rejected you for so many years you no longer cared either.</p>
+      <p>At a certain point, I began to see that you were no longer my little sister but a full human (as funny as that sounds), often with more wisdom and emotional maturity than me. I felt grateful to have someone that shared the same background and values as me to confide in and realized just because you were younger didn't mean you had less to offer. I learned tough lessons from you because you told me things my friends never would and that umma and appa didn't know of. Things that only a sister could tell you.</p>
+      <p>I am glad that in recent years we have become friends again. That you don't mind hanging out with me or if I tag along to hang out with your friends. That you are willing to listen to how I'm doing, to share about your life, to let me borrow your clothes - even though I never set a good example when we were young. I am proud of who you have become and sorry I was not a better sister to you when we were little.</p>
+      <p>You are now 20 and not so little. But I think to me, even though you are older than me in many aspects aside from age, you will always be my little sister. And I wouldn't mind matching with you so much anymore. Thanks for being a good sister.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

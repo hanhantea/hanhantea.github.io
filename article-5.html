@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversation with a Mochi Shop Owner — Christine Han</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@200;300;400;500;600&family=Karla:wght@300;400;500&display=swap');
+
+  :root {
+    --hanji: #F3EBE0;
+    --hanji-warm: #EBE0D2;
+    --ink: #2C251D;
+    --ink-soft: #52493B;
+    --persimmon: #C07A6E;
+    --amber: #C4A86C;
+    --celadon: #9AAD8C;
+    --sienna: #8E7766;
+    --mauve: #A08890;
+    --warm-gray: #847A6C;
+    --wood: #6E5C3A;
+    --wood-med: #8A7650;
+    --wood-light: #AA9868;
+    --taupe: #B0A090;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body {
+    font-family: 'Karla', sans-serif;
+    color: var(--ink);
+    background: var(--hanji);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Hanji texture */
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0; opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='h'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23h)'/%3E%3C/svg%3E");
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 18% 22%, rgba(212,184,176,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 78% 60%, rgba(180,200,170,0.06) 0%, transparent 45%);
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    background: rgba(243, 235, 224, 0.94);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(200, 188, 168, 0.25);
+  }
+  .logo { font-family: 'Noto Serif KR', serif; font-weight: 400; font-size: 1rem; }
+  .logo-en { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft); margin-left: 0.8rem; letter-spacing: 0.06em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: .76rem; letter-spacing: .14em; text-transform: lowercase; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--persimmon); transition: width .5s cubic-bezier(.25,.1,.25,1); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Back link */
+  .back-link {
+    display: inline-block;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .3s;
+    margin-bottom: 2rem;
+  }
+  .back-link:hover { color: var(--persimmon); }
+
+  /* Article */
+  .article-page {
+    position: relative;
+    z-index: 1;
+  }
+  .article-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 8rem 2rem 6rem;
+  }
+  .article-body .article-tag {
+    font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--celadon);
+    margin-bottom: 1rem;
+  }
+  .article-body h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; font-size: 2.4rem;
+    line-height: 1.3; margin-bottom: 0.6rem;
+  }
+  .article-body .article-date {
+    font-size: .75rem; color: var(--taupe);
+    letter-spacing: .08em; margin-bottom: 3rem;
+  }
+  .article-body .article-content {
+    font-size: .95rem; line-height: 2;
+    color: var(--ink-soft);
+  }
+  .article-body .article-content p { margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-en">Christine Han</span> 한예진</div>
+  <ul class="nav-links">
+    <li><a href="index.html#work">experience</a></li>
+    <li><a href="index.html#about">living</a></li>
+    <li><a href="index.html#writing">writing</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="article-page">
+  <div class="article-body">
+    <a href="index.html#writing" class="back-link">← back</a>
+    <div class="article-tag">stories</div>
+    <h1>Conversation with a Mochi Shop Owner</h1>
+    <div class="article-date">April 17, 2025</div>
+    <div class="article-content">
+      <p>Behind this small unassuming East Village storefront with colorful stickers on the window lies NYC's best mochi store with an even better story.</p>
+      <p>The mochis come in light pink boxes and an iridescent tote every customer gets for free. It's instagrammable and influencer ready - but to reduce it to just that would not be doing them justice.</p>
+      <p>My first impressions are good. The interior is small but cute; the open kitchen clearly shows the effort and care that goes into the desserts. I admit I'm surprised- the two chefs inside are Ukrainian - contrary to the majority of Asian based places I've been to NYC.</p>
+      <p>The menu is equally interesting; I see an unexpected amalgamation of flavors and mediums - lime, mint, tonic, and espresso; bubble gum and raspberry mousse in mochi; coconut and mango in milkshake boba.</p>
+      <p>I ask for recommendations and one of the chefs helps me order. I soon find out that he is Pavlo, the owner and namesake of Pavlo's mochi. My order consists of Mango passion fruit vanilla, Pistachio raspberry, Matcha raspberry, and Strawberry caramel.</p>
+      <p>The mochis are packed with care with garnishes of cut fruit on top. It's clear that they are carefully crafted. I already know my favorite flavor will be the Mango Passionfruit Vanilla, so I reach for it first. I take a bite into the pillowy treat and am instantly in love. The mochi is soft and chewy with a thin but elastic texture that makes it easy to bite off. It encompasses a soft subtle vanilla mousse filling, complemented by a more tart passion fruit puree. The ripe mango on top is the perfect finish.</p>
+      <p>My black skirt is covered in the powdery dusting that are brushed on top of the treats to keep them from sticking but I am too occupied to care. The rest of the mochis are equally decedent though nothing can top the first bite I had.</p>
+      <p>"How was it?" Pavlo asks. I rave about them as I'm sure every customer does. "The menu is interesting though- how did you come up with it?"</p>
+      <p>Pavlo shrugs. I was a chef before this, he says. You learn things when you're in a kitchen; you exchange knowledge and try new things whether it be Asian or European.</p>
+      <p>"Oh, you were a chef?" I'm surprised not by his obvious culinary background but perhaps his current choice of specialization.</p>
+      <p>Yeah I was on Master chef, he says nonchalantly as he organizes his work space. A quick google search confirms this. "Is this you?" I show him an article on my phone.</p>
+      <p>"Yeah." He looks up from where he's crouching down organizing inventory.</p>
+      <p>Suddenly the mind blowing mochi itself is not as important - I need to hear more about this.</p>
+      <p>I ask if he wants to record a video of him talking to the camera. He laughs and shakes his head. "But I can make mochi if you want."</p>
+      <p>So we go behind the counter and he pulls out trays of freshly prepped mochi and frozen mousse. And as he works, he begins to talk, first looking at me, and then the camera.</p>
+      <p>"How long have you been making mochi?" I ask - still curious about the choice in specialization.</p>
+      <p>"First time I made it was 8 years ago. But it was just for my family and me. But now - today we started at 8am and now it's 5pm… and I've made 300 mochis." A good chef, he tells me should be able to do everything - cooking, desserts, mochi.</p>
+      <p>"I feel like people need mochi like I need [it]. Because people love it and [want to] buy it somewhere but no one knows a store like that where you can buy fresh mochi [of] many flavors in the same shop."</p>
+      <p>I think about all the times I've had mochi in NYC and realize he's right. There's none I can really think of aside from the ice cream mochi shops, which aren't exactly fresh and focus more on the ice cream than the mochi itself.</p>
+      <p>But as strategic as his choice of specialization might be, at the end of the day, it boils down to something very simple: happiness.</p>
+      <p>"It's very surprising for me. Last weekend we had many guests and it made me very happy…I have something in my mind [that] I love and I share with people… and hope people love it too." Pavlo says as he pinches the mochi around the mousse.</p>
+      <p>I look through the remaining search results on my phone. Pavlo's love for not just cooking but also for sharing his food is evident in the articles I find. He is lauded as a baker who provided free bread for his city in Kherson, Ukraine when it was besieged by the Russian military. In his home country, he shared what he loved in a time of need in the way he knew best. And now in NYC it appears he is ready to continue this mission through a different medium- mochi.</p>
+      <p>With my order he includes a free branded cup that he's giving to the first 1000 customers and packages everything into their soon to be iconic iridescent bag.</p>
+      <p>"Who knows there might be a line soon" Pavlo says.</p>
+      <p>"I hope there is. I know there will be." I reply.</p>
+      <p>I thank him for his time and walk out, passing happy customers sitting on the pink benches outside.</p>
+      <p>One of the greatest privileges of making food based content is being privy to the behind the scenes. Because if I had not known all this - sure I would probably eat the mochi and still think it was the best I've had in NYC - but I wouldn't know to appreciate what it took for this mochi to be here. It's so much more than just food. Than just a sweet treat; just a dessert; and just an instagram op. And these stories of what it took for this dish, for this chef, for this baker to get here to NYC is what makes this city special. And today Pavlo reminded me of this.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
