@@ -6,7 +6,7 @@
 
 **Density:** Spacious and unhurried. Generous whitespace between sections. Content breathes. The page rewards slow scrolling.
 
-**Aesthetic philosophy:** Korean-American cultural duality expressed through bilingual typography, traditional craft motifs (norigae tassels, lattice patterns, silk road metaphors), and a restrained warm palette. Never flashy, always intentional.
+**Aesthetic philosophy:** Korean-American cultural duality expressed through bilingual typography, traditional craft motifs (norigae tassels, silk road metaphors), and a restrained warm palette. Never flashy, always intentional.
 
 **Guardrails:**
 - Never use cool blues, pure whites, or saturated neons — stay within the warm earth tone family
@@ -20,7 +20,7 @@
 
 ### Primary Surface
 - **Hanji** `#F3EBE0` — Primary background. The warm cream of traditional Korean mulberry paper. Used on `body`, page backgrounds, and as the base tone everything else sits on.
-- **Hanji Warm** `#EBE0D2` — Slightly deeper parchment. Used for subtle differentiation: decorative Korean characters, lattice borders, section dividers, and card wash backgrounds.
+- **Hanji Warm** `#EBE0D2` — Slightly deeper parchment. Used for subtle differentiation: decorative Korean characters, section dividers, and card wash backgrounds.
 
 ### Text
 - **Ink** `#2C251D` — Primary text. Deep walnut brown, not black. Used for headings, hero title, body copy.
@@ -35,8 +35,8 @@
 
 ### Decorative
 - **Mauve** `#A08890` — Dusty rose. Used in gradient washes and the photo collage placeholder background.
-- **Wood Light** `#AA9868` — Light brown. Used for the silk road path stroke, essay number color, and lattice glow effects.
-- **Wood Med** `#8A7650` — Medium brown. Used in lattice pattern rendering.
+- **Wood Light** `#AA9868` — Light brown. Used for the silk road path stroke and essay number color.
+- **Wood Med** `#8A7650` — Medium brown. Used in decorative elements.
 
 > **⚠ Inconsistency noted:** A stray hex value `#7A9BB5` (cool blue-gray) appears in one experience card wash gradient (`exp-stop-6`). This is outside the palette and should be replaced with an existing palette color like Celadon or Mauve.
 
@@ -91,14 +91,36 @@ The scale uses two tiers for small text — **label** (0.75rem) and **caption** 
 When Playfair Display headings stack above Karla body text, the serif glyphs have wider left-side bearing than the sans-serif, creating a subtle visual misalignment even though both share the same box-model edge. To compensate:
 - Playfair headings at display size (2.5rem+): `text-indent: -0.04em`
 - Playfair headings at heading size (1.3rem): `text-indent: -0.03em`
-- This is applied to: `.hero-title`, `.about-text h2`, `.exp-role`, `.essay h3`
+- This is applied to: `.hero-title`, `.exp-role`, `.essay h3`
 
 ### Section Header Pattern
-Two header patterns are used, each for a specific context:
+All three content sections (Experience, Living, Writing) use the same bilingual header component:
 
-**Bilingual section header** (Experience, Writing): Korean decorative character + English heading + horizontal rule, in a three-column grid (`auto auto 1fr`), bottom-aligned. Korean character uses `Noto Serif KR` weight 200 at 3.5rem; English heading uses `Playfair Display` at 1.8rem. Both share the same grid gap (1.5rem) and padding (0 10vw). On mobile, collapses to single column with rule hidden.
+**Bilingual section header**: Korean decorative character + English heading + horizontal rule, in a three-column grid (`auto auto 1fr`), bottom-aligned. Korean character uses `Noto Serif KR` weight 200 at 3.5rem; English heading uses `Playfair Display` at 1.8rem. Grid gap: 1.5rem. On tablet: English drops to 1.3rem. On mobile: collapses to single column, rule hidden, English at 1.3rem.
 
-**Editorial content header** (Living/About, Footer): English heading (`Playfair Display`) with Korean subtitle below (`Noto Serif KR` 0.9rem, persimmon). Used for content sections where the heading introduces a reading block rather than marking a navigation landmark.
+All three use the same CSS class (`section-head-*`). Experience's parent (`work-section`) has no horizontal padding, so it gets an override: `.work-section .section-head { padding: 0 10vw; }`.
+
+| Section | Korean Character | English Heading |
+|---------|-----------------|-----------------|
+| Experience | 경험 | Experience |
+| Living | 삶 | Living |
+| Writing | 글 | Writing |
+
+**Footer header**: Korean label above (`Noto Serif KR` 1.4rem, persimmon) + English heading below (`Playfair Display` 3rem). Centered layout, intentionally distinct from section headers.
+
+### Accent Color Rule
+**Persimmon** (`--persimmon`, #C07A6E) is the single accent/highlight color. It is used for: link hover states, name highlights ("Christine"), interlude emphasis ("works"), pull-quote borders, date labels, active tabs, Korean labels, and the footer. There is no secondary accent color for emphasis — amber (`--amber`) is reserved exclusively for decorative wash gradients at low opacity and should never be used for text or interactive elements.
+
+### Content Grid
+All content sections share a horizontal margin of `10vw` on desktop, `6vw` on tablet, `5vw` on phone. The hero section's `padding-left: 10vw` aligns its text with section headers below. The norigae is positioned at `left: calc(10vw - 14px)` to sit at the content edge.
+
+### Metadata Colors
+All metadata text (dates, company names, tags) uses a consistent muted palette:
+- Dates: `var(--warm-gray)` across all sections
+- Company/org names: `var(--warm-gray)`
+- Tags (current/contract): `var(--warm-gray)`, italic
+- Category tags: `var(--celadon)`, uppercase
+- Experience date labels: `var(--persimmon)` (the only metadata that uses an accent color, because it serves as a section-level timestamp)
 
 
 ## 4. Component Stylings
@@ -168,41 +190,44 @@ Two header patterns are used, each for a specific context:
 
 ### Grid System
 - No formal column grid. Layout is section-based with generous horizontal padding.
-- Desktop horizontal padding: `10vw` (yields ~80vw content width)
+- Desktop horizontal padding: `10vw` → tablet `6vw` → phone `5vw`
 - Content max-width: `min(1120px, 90vw)` on hero
-- About section: asymmetric two-column grid `0.9fr 1.1fr` with `6rem` gap
-- Writing section head: `auto auto 1fr` (Korean, English, decorative line)
+- About section: asymmetric two-column grid `0.9fr 1.1fr` with `4rem` gap. **Note:** Because grid `gap` already provides spacing between items, `.about-section > .section-head` uses `margin-bottom: 0` to avoid compounding with the grid gap. The `4rem` margin-bottom on `.section-head` only applies in non-grid parent contexts (Writing, Experience).
+- All section headers: `auto auto 1fr` grid (Korean, English, decorative line)
 
-### Proposed Spacing Scale (8px base)
+### Spacing Scale
 
-| Token | Value | Current Usage |
-|-------|-------|---------------|
-| `space-xs` | 0.25rem (4px) | — |
-| `space-sm` | 0.5rem (8px) | Date margins, small gaps |
-| `space-md` | 1rem (16px) | Label margins, standard gaps |
-| `space-lg` | 1.5rem (24px) | Card padding, heading gaps, footer margins |
-| `space-xl` | 2rem (32px) | Nav padding, essay padding, section gaps |
-| `space-2xl` | 3rem (48px) | Section header gaps, article body margin-bottom |
-| `space-3xl` | 4rem (64px) | Section header margin-bottom |
-| `space-4xl` | 6rem (96px) | About section grid gap |
+All spacing values in the site are drawn from this scale. No ad-hoc values.
 
-> **⚠ Gaps in current spacing:** The `6rem` gap in the about section grid is the largest fixed spacing value. Hero padding uses `9.5rem` top and `4rem` bottom, which don't align to any scale. Section vertical padding mixes `vh` units (3vh, 10vh, 12vh) with fixed values, making spacing unpredictable across viewport sizes. Consider standardizing section padding to fixed rem values or a consistent vh value.
+| Token | Value | Usage |
+|-------|-------|-------|
+| `space-xs` | 0.25rem (4px) | Micro: exp-company margin-top |
+| `space-sm` | 0.5rem (8px) | Tight: date margins, tag margins |
+| `space-md` | 1rem (16px) | Standard: label margins, paragraph gaps, adjacent element spacing |
+| `space-lg` | 1.5rem (24px) | Component internal: card padding, heading gaps, section-head grid gap |
+| `space-xl` | 2rem (32px) | Nav padding, essay row padding, writing-tabs gap |
+| `space-2xl` | 3rem (48px) | Section padding, nav-link gap, footer-links gap |
+| `space-3xl` | 4rem (64px) | Section internal: section-head margin-bottom (non-grid contexts), about-section grid gap |
+| `space-4xl` | 8rem (128px) | Section external: footer top padding |
 
 ### Vertical Section Rhythm
-- Hero: `min-height: 100vh`
-- Work section: `padding: 10vh 0 1vh`
-- About section: `padding: 3vh 10vw`
-- Writing section: `padding: 12vh 10vw`
-- Interlude: `padding: 8vh 0`, `min-height: 30vh`
-- Footer: `padding: 9rem 10vw 3rem`
+All content sections use fixed `3rem` (48px) vertical padding — never viewport-relative units like `vh`, which produce unpredictable gaps across screen sizes. Sections flow directly into one another, yielding a consistent ~96px section-to-section gap (48px bottom pad + 48px top pad).
+
+**Why fixed rem, not vh:** Reference design systems (Apple HIG, Figma, Notion, Spotify) all use fixed spacing units (8px base). Viewport-relative vertical spacing causes the same layout to feel cramped on short screens and oversized on tall ones.
+
+- Hero: `min-height: 100vh`, `padding-top: 9.5rem` (accounts for fixed nav), `padding-bottom: 3rem`
+- Experience: `padding: 3rem 0` (no horizontal padding — silk road needs full width)
+- Interlude: `padding: 3rem 0`
+- Living: `padding: 3rem 10vw`
+- Writing: `padding: 3rem 10vw`
+- Footer: `padding: 8rem 10vw 3rem`
+
+**Responsive overrides** (tablet ≤1200px, phone ≤600px): section padding reduces to `2rem`.
 
 ### Responsive Breakpoints
-- **900px** (tablet): Single-column about section, linearized experience timeline, reduced padding
-- **600px** (phone): Stacked hero, hidden silk ribbon/norigae, compact nav, simplified section headers
-- **380px** (small phone): Further font size and gap reductions
-
-### Whitespace Strategy
-Generous and asymmetric. Left/right padding is consistent (`10vw` desktop), but vertical rhythm varies freely between sections to create editorial pacing — some sections breathe (interlude), others are denser (experience). This is intentional and follows magazine layout conventions rather than a strict mathematical grid.
+- **1200px** (tablet): single-column about, linearized experience, `6vw` padding
+- **600px** (phone): stacked hero, compact nav, single-column headers, `5vw` padding
+- **380px** (small phone): further font size and gap reductions
 
 
 ## 6. Depth & Elevation
@@ -220,7 +245,6 @@ Shadows use exclusively warm-toned `rgba(44, 37, 29, ...)` (the Ink color) rathe
 ### Texture Overlays
 - Hanji paper texture: SVG fractal noise filter at 7% opacity, fixed position, full viewport
 - Warm radial gradients: two overlapping at 6–8% opacity for subtle color variation
-- Lattice patterns: SVG-rendered Korean window lattice (창살) motifs as section dividers
 
 
 ## 7. Animation & Motion
@@ -244,7 +268,6 @@ All entrance animations use `forwards` fill mode (element stays at final state).
 
 ### Scroll-Driven Animations
 - Silk road path: draws along stroke-dashoffset as user scrolls through experience section
-- Lattice patterns: line-by-line draw animation tied to scroll position with stagger
 
 ### Hover Transitions
 - Standard color transitions: `0.3s ease`
@@ -263,14 +286,8 @@ All entrance animations use `forwards` fill mode (element stays at final state).
 ### Norigae (노리개)
 SVG tassel ornament hanging from the nav area on the left side. Uses Persimmon and Amber tones with gradient fills. Hidden on mobile (below 600px).
 
-### Lattice Frames (창살)
-SVG-rendered Korean window lattice patterns used as section dividers. Five instances across the page. 80px height. Lines draw in on scroll with mouse-proximity glow effect.
-
 ### Silk Road Path
 Winding SVG bezier curve connecting experience stops. Stroke: Wood Light at 0.5 opacity. Glow layer: Persimmon at 0.2 opacity. Draws progressively as user scrolls.
-
-### Serpentine Route
-Full-page SVG overlay connecting all section dividers with right-angled lines and corner motifs. Uses Hanji Warm stroke. Static (no scroll animation).
 
 ### Custom Cursor (무궁화)
 Rose of Sharon (mugunghwa, Korea's national flower) SVG replaces the default cursor on desktop. Scales up and rotates 15° on hoverable elements. Hidden on touch devices.
